@@ -12,5 +12,16 @@ window.addEventListener("load", function() {
        console.log(listedPlanets);
        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
    })
-   
+
+});
+window.addEventListener("load", function() {
+
+
+let form = document.querySelector("form");
+form.addEventListener("submit", function(event) {
+    
+    alert("All fields are required");
+    event.preventDefault();
+    
+});
 });
