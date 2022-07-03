@@ -2,22 +2,32 @@
 //require('isomorphic-fetch');
 
 //const { ConsoleReporter } = require("jasmine");
-
+//const document = require("./index.html")
 
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
-   // Here is the HTML formatting for our mission target div.
-   /*
-                <h2>Mission Destination</h2>
-                <ol>
-                    <li>Name: </li>
-                    <li>Diameter: </li>
-                    <li>Star: ${star}</li>
-                    <li>Distance from Earth: </li>
-                    <li>Number of Moons: </li>
-                </ol>
-                <img src="">
-   */
+//     //This one first, then pickPlanet()
+    let missionTarget = document.getElementById("missionTarget");
+    let planetList = document.createElement("ol");
+    missionTarget.appendChild(planetList);
+    
+
+
+    let infoArray = [name, diameter, star, distance, moons, imageUrl];
+    for(i=0;i<infoArray.length;i++){
+        
+        if(i<5){
+        let planetItem = document.createElement("li");
+        planetList.appendChild(planetItem);
+        planetItem.innerHTML = `${infoArray[i]}`;
+        }
+        else{
+            let planetImg = document.createElement("img");
+            planetImg.src = infoArray[i];
+            missionTarget.appendChild(planetImg);
+        }
+
+    }
 }
 
 function validateInput(testInput) {
@@ -101,6 +111,11 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             launchStatus.innerHTML = "Shuttle ready for launch";
             console.log(launchStatus.innerHTML);
             launchStatus.style= "color: green";
+            cargoStatus.style = "black";
+            fuelStatus.style = "black";
+            cargoStatus.innerHTML = "Cargo mass is low enough for launch";
+            fuelStatus.innerHTML = "Fuel level is high enough for launch";
+            faultyItems.style = "visibility: hidden";
         } 
     }
     else{
@@ -111,19 +126,45 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 }
 
 async function myFetch() {
+    // myFetch() has some of the code necessary for fetching planetary JSON, however, it is not complete. 
+    // You need to add the URL and return response.json().
+    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
     let planetsReturned;
-
-    planetsReturned = await fetch().then( function(response) {
-        });
-
+    
+        planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+            response.json().then(function( json){
+                pickPlanet(json);
+            })
+            });
+    
     return planetsReturned;
-}
+    }
+// First, do as the comments in the code tell you and set listedPlanetsResponse equal to the value returned when calling myFetch(). 
+//This value is going to be a promise. 
+//If we head to our browser and open up our developer tools, we can now see a list of the planets. 
+// Then using pickPlanet() and addDestinationInfo(), select a planet at random from listedPlanets and pass that information to addDestinationInfo(). 
+// Reload your page and check out your site to see the mission target information
+
+
+
+
+
 
 function pickPlanet(planets) {
+    //This one after addDestinationInfo(), then myFetch()
+
+    // pickPlanet() takes in one argument: a list of planets. 
+    // Using Math.random(), return one planet from the list with a randomly-selected index. 
+    let destinationNumber = (Math.round(5*(Math.random())));
+    console.log(planets);
+    
+    let destinationChoice = planets[destinationNumber];
+    
+    return addDestinationInfo(document, `Name: ${destinationChoice.name}`,`Diameter: ${destinationChoice.diameter}`, `Star: ${destinationChoice.star}`, `Distance: ${destinationChoice.distance}`, `Moons: ${destinationChoice.moons}`, destinationChoice.image);
 }
 
-// module.exports.addDestinationInfo = addDestinationInfo;
+ module.exports.addDestinationInfo = addDestinationInfo;
  module.exports.validateInput = validateInput;
  module.exports.formSubmission = formSubmission;
-// module.exports.pickPlanet = pickPlanet; 
-// module.exports.myFetch = myFetch;
+ module.exports.pickPlanet = pickPlanet; 
+ module.exports.myFetch = myFetch;
