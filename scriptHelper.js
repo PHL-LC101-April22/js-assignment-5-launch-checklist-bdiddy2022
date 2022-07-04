@@ -2,7 +2,6 @@
 //require('isomorphic-fetch');
 
 //const { ConsoleReporter } = require("jasmine");
-//const document = require("./index.html")
 
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
@@ -52,13 +51,6 @@ function validateInput(testInput) {
 
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    // let launchStatus = document.getElementById("launchStatus");
-    // let cargoStatus = document.getElementById("cargoStatus");
-    // let fuelStatus = document.getElementById("fuelStatus");
-    // let pilotStatus = document.getElementById("pilotStatus");
-    // let copilotStatus = document.getElementById("copilotStatus");
-
-
 
     let statusArray = [pilot, copilot, fuelLevel, cargoLevel]
     
@@ -126,9 +118,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 }
 
 async function myFetch() {
-    // myFetch() has some of the code necessary for fetching planetary JSON, however, it is not complete. 
-    // You need to add the URL and return response.json().
-    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
+
     let planetsReturned;
     
         planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
@@ -139,24 +129,12 @@ async function myFetch() {
     
     return planetsReturned;
     }
-// First, do as the comments in the code tell you and set listedPlanetsResponse equal to the value returned when calling myFetch(). 
-//This value is going to be a promise. 
-//If we head to our browser and open up our developer tools, we can now see a list of the planets. 
-// Then using pickPlanet() and addDestinationInfo(), select a planet at random from listedPlanets and pass that information to addDestinationInfo(). 
-// Reload your page and check out your site to see the mission target information
-
-
-
-
 
 
 function pickPlanet(planets) {
-    //This one after addDestinationInfo(), then myFetch()
 
-    // pickPlanet() takes in one argument: a list of planets. 
-    // Using Math.random(), return one planet from the list with a randomly-selected index. 
     let destinationNumber = (Math.round(5*(Math.random())));
-    console.log(planets);
+
     
     let destinationChoice = planets[destinationNumber];
     

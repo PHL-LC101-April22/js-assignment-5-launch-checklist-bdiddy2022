@@ -1,10 +1,6 @@
 //const { formSubmission } = require("./scriptHelper");
 
 
-// window.addEventListener("load", function() {
-
-// });
-
 
 
 
