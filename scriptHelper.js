@@ -7,6 +7,9 @@
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
 //     //This one first, then pickPlanet()
     let missionTarget = document.getElementById("missionTarget");
+    let destinationInfo = document.createElement("h2");
+    destinationInfo.innerHTML = "Destination Info";
+    missionTarget.appendChild(destinationInfo);
     let planetList = document.createElement("ol");
     missionTarget.appendChild(planetList);
     
@@ -53,7 +56,7 @@ function validateInput(testInput) {
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
     let statusArray = [pilot, copilot, fuelLevel, cargoLevel]
-    
+    launchStatus.style="visibility:visible";
     let testPassed = true;
     console.log(statusArray);
 
@@ -78,27 +81,34 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         testPassed = false;
     }
     if (testPassed = true){
+        list.style = "visibility: visible";
         pilotStatus.innerHTML= `Pilot ${pilot} is ready for launch`;
         console.log("pilot update");
         copilotStatus.innerHTML = `Copilot ${copilot} is ready for launch`;
         console.log("copilot update");
-        if(fuelLevel < 10000) {
-            console.log("fuel low");
-            fuelStatus.innerHTML= "Fuel level is too low for launch";
-            fuelStatus.style = "color:red";
-            launchStatusCheck.style = "visibility: visible";
+        
+        
+        
+        if (fuelLevel<10000||cargoLevel>10000){
             launchStatus.innerHTML= "Shuttle not ready for launch";
+            console.log(launchStatus);
             launchStatus.style ="color: red";
+            if(fuelLevel < 10000) {
+                console.log("fuel low");
+                fuelStatus.innerHTML= "Fuel level is too low for launch";
+                fuelStatus.style = "color:red";
+                // launchStatusCheck.style = "visibility: visible";
+                // launchStatus.innerHTML= "Shuttle not ready for launch";
+                // launchStatus.style ="color: red";
+            }
+            if (cargoLevel > 10000) {
+                console.log("cargo high");
+                
+                cargoStatus.innerHTML= "Cargo mass is too high for launch";
+                cargoStatus.style = "color:red";
+            } 
+
         }
-         if (cargoLevel > 10000) {
-            console.log("cargo high");
-            list.style = "visibility: visible";
-            cargoStatus.innerHTML= "Cargo mass is too high for launch";
-            cargoStatus.style = "color:red";
-              launchStatus.innerHTML = "Shuttle not ready for launch";
-              console.log(launchStatus);
-              launchStatus.style = "color: red";
-        } 
         else{
             launchStatus.innerHTML = "Shuttle ready for launch";
             console.log(launchStatus.innerHTML);
@@ -107,7 +117,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
             fuelStatus.style = "black";
             cargoStatus.innerHTML = "Cargo mass is low enough for launch";
             fuelStatus.innerHTML = "Fuel level is high enough for launch";
-            faultyItems.style = "visibility: hidden";
+            
         } 
     }
     else{
@@ -138,7 +148,7 @@ function pickPlanet(planets) {
     
     let destinationChoice = planets[destinationNumber];
     
-    return addDestinationInfo(document, `Name: ${destinationChoice.name}`,`Diameter: ${destinationChoice.diameter}`, `Star: ${destinationChoice.star}`, `Distance: ${destinationChoice.distance}`, `Moons: ${destinationChoice.moons}`, destinationChoice.image);
+    return addDestinationInfo(document, `<b>Name:</b> ${destinationChoice.name}`,`<b>Diameter:</b> ${destinationChoice.diameter}`, `<b>Star:</b> ${destinationChoice.star}`, `<b>Distance:</b> ${destinationChoice.distance}`, `<b>Moons:</b> ${destinationChoice.moons}`, destinationChoice.image);
 }
 
  module.exports.addDestinationInfo = addDestinationInfo;

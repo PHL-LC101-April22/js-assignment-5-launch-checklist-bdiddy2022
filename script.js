@@ -10,6 +10,8 @@ window.addEventListener("load", function() {
     let form = document.getElementById("launchForm");
     let button = document.getElementById("formSubmit");
     let list = document.getElementById("faultyItems");
+    let missionTarget=document.getElementById("missionTarget")
+    //missionTarget.insertAdjacentHTML(missionTarget, "<")
     let listedPlanetsResponse = myFetch();
     console.log("Listed Planets Response", listedPlanetsResponse)
     let listedPlanets;
