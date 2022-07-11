@@ -1,7 +1,7 @@
 // Write your helper functions here!
 //require('isomorphic-fetch');
 
-//const { ConsoleReporter } = require("jasmine");
+const { ConsoleReporter } = require("jasmine");
 
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
