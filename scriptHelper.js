@@ -145,7 +145,7 @@ function pickPlanet(planets) {
     
     let destinationChoice = planets[destinationNumber];
     
-    return addDestinationInfo(document, `<b>Name:</b> ${destinationChoice.name}`,`<b>Diameter:</b> ${destinationChoice.diameter}`, `<b>Star:</b> ${destinationChoice.star}`, `<b>Distance:</b> ${destinationChoice.distance}`, `<b>Moons:</b> ${destinationChoice.moons}`, destinationChoice.image);
+    return addDestinationInfo(index.html, `<b>Name:</b> ${destinationChoice.name}`,`<b>Diameter:</b> ${destinationChoice.diameter}`, `<b>Star:</b> ${destinationChoice.star}`, `<b>Distance:</b> ${destinationChoice.distance}`, `<b>Moons:</b> ${destinationChoice.moons}`, destinationChoice.image);
 }
 
  module.exports.addDestinationInfo = addDestinationInfo;
