@@ -55,7 +55,7 @@ function validateInput(testInput) {
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
-    let statusArray = [pilot, copilot, fuelLevel, cargoLevel]
+    let statusArray = [pilot, copilot, fuelLevel, cargoLevel];
     launchStatus.style="visibility:visible";
     let testPassed = true;
     console.log(statusArray);
@@ -131,7 +131,7 @@ async function myFetch() {
         planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
             response.json().then(function( json){
                 pickPlanet(json);
-            })
+            });
             });
     
     return planetsReturned;
@@ -145,7 +145,7 @@ function pickPlanet(planets) {
     
     let destinationChoice = planets[destinationNumber];
     
-    return addDestinationInfo(index.html, `<b>Name:</b> ${destinationChoice.name}`,`<b>Diameter:</b> ${destinationChoice.diameter}`, `<b>Star:</b> ${destinationChoice.star}`, `<b>Distance:</b> ${destinationChoice.distance}`, `<b>Moons:</b> ${destinationChoice.moons}`, destinationChoice.image);
+    return addDestinationInfo(planets.json, `<b>Name:</b> ${destinationChoice.name}`,`<b>Diameter:</b> ${destinationChoice.diameter}`, `<b>Star:</b> ${destinationChoice.star}`, `<b>Distance:</b> ${destinationChoice.distance}`, `<b>Moons:</b> ${destinationChoice.moons}`, destinationChoice.image);
 }
 
  module.exports.addDestinationInfo = addDestinationInfo;
