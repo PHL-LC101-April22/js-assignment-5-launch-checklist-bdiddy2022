@@ -1,4 +1,4 @@
-//const { formSubmission } = require("./scriptHelper");
+const { formSubmission } = require("./scriptHelper");
 
 
 
@@ -6,12 +6,11 @@
 
 
 window.addEventListener("load", function() {
-    //addDestinationInfo();
     let form = document.getElementById("launchForm");
     let button = document.getElementById("formSubmit");
     let list = document.getElementById("faultyItems");
     let missionTarget=document.getElementById("missionTarget")
-    //missionTarget.insertAdjacentHTML(missionTarget, "<")
+
     let listedPlanetsResponse = myFetch();
     console.log("Listed Planets Response", listedPlanetsResponse)
     let listedPlanets;
@@ -24,7 +23,7 @@ window.addEventListener("load", function() {
     let chosenPlanet = pickPlanet(listedPlanets);
     
     addDestinationInfo(document, chosenPlanet.name, chosenPlanet.diameter, chosenPlanet.star, chosenPlanet.distance, chosenPlanet.moons, chosenPlanet.imageUrl);
-    })
+    });
     
     
     

@@ -1,5 +1,5 @@
 // Write your helper functions here!
-//require('isomorphic-fetch');
+require('isomorphic-fetch');
 
 const { ConsoleReporter } = require("jasmine");
 
@@ -97,9 +97,6 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
                 console.log("fuel low");
                 fuelStatus.innerHTML= "Fuel level is too low for launch";
                 fuelStatus.style = "color:red";
-                // launchStatusCheck.style = "visibility: visible";
-                // launchStatus.innerHTML= "Shuttle not ready for launch";
-                // launchStatus.style ="color: red";
             }
             if (cargoLevel > 10000) {
                 console.log("cargo high");
