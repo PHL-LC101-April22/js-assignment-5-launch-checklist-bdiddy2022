@@ -1,5 +1,5 @@
-const { formSubmission } = require("./scriptHelper");
-
+//const { formSubmission } = require("./scriptHelper");
+//const {addDestinationInfo} = require('./scriptHelper')
 
 
 
@@ -8,22 +8,21 @@ const { formSubmission } = require("./scriptHelper");
 window.addEventListener("load", function() {
     let form = document.getElementById("launchForm");
     let button = document.getElementById("formSubmit");
-    let list = document.getElementById("faultyItems");
-    let missionTarget=document.getElementById("missionTarget")
+
 
     let listedPlanetsResponse = myFetch();
-    console.log("Listed Planets Response", listedPlanetsResponse)
+    console.log("Listed Planets Response", listedPlanetsResponse);
     let listedPlanets;
-    listedPlanetsResponse.then(function (result) {
+    listedPlanetsResponse.then(function(result) {
         listedPlanets = listedPlanetsResponse[0];
-        console.log(listedPlanets);
+        
     }).then(function () {
-        console.log(listedPlanets);
+        
     // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
     let chosenPlanet = pickPlanet(listedPlanets);
-    
+    console.log("chosen planet" + chosenPlanet);
     addDestinationInfo(document, chosenPlanet.name, chosenPlanet.diameter, chosenPlanet.star, chosenPlanet.distance, chosenPlanet.moons, chosenPlanet.imageUrl);
-    });
+    })
     
     
     

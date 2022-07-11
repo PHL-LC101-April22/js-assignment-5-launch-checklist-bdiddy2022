@@ -1,5 +1,5 @@
 // Write your helper functions here!
-require('isomorphic-fetch');
+ require('isomorphic-fetch');
 
 const { ConsoleReporter } = require("jasmine");
 
@@ -91,7 +91,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         
         if (fuelLevel<10000||cargoLevel>10000){
             launchStatus.innerHTML= "Shuttle not ready for launch";
-            console.log(launchStatus);
+            console.log(launchStatus.innerHTML);
             launchStatus.style ="color: red";
             if(fuelLevel < 10000) {
                 console.log("fuel low");
@@ -129,7 +129,7 @@ async function myFetch() {
     let planetsReturned;
     
         planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
-            response.json().then(function( json){
+            response.json().then(function(json){
                 pickPlanet(json);
             });
             });
@@ -144,8 +144,9 @@ function pickPlanet(planets) {
 
     
     let destinationChoice = planets[destinationNumber];
+    console.log(destinationChoice);
     
-    return addDestinationInfo(planets.json, `<b>Name:</b> ${destinationChoice.name}`,`<b>Diameter:</b> ${destinationChoice.diameter}`, `<b>Star:</b> ${destinationChoice.star}`, `<b>Distance:</b> ${destinationChoice.distance}`, `<b>Moons:</b> ${destinationChoice.moons}`, destinationChoice.image);
+    return addDestinationInfo(document, `<b>Name:</b> ${destinationChoice.name}`,`<b>Diameter:</b> ${destinationChoice.diameter}`, `<b>Star:</b> ${destinationChoice.star}`, `<b>Distance:</b> ${destinationChoice.distance}`, `<b>Moons:</b> ${destinationChoice.moons}`, destinationChoice.image);
 }
 
  module.exports.addDestinationInfo = addDestinationInfo;
